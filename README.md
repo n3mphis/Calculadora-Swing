@@ -8,7 +8,6 @@
 Una **calculadora básica con interfaz gráfica** desarrollada en **Java** utilizando **Swing**.
 
 ---
-
 ## 🚀 Características
 
 - Operaciones básicas: `+`, `-`, `×`, `÷`
