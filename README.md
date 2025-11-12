@@ -20,7 +20,7 @@ Una **calculadora básica con interfaz gráfica** desarrollada en **Java** utili
 ---
 
 ## 📸 Capturas de Pantalla
-pendiente
+![Captura de la interfaz de la calculadora](/screenshots/calculadora.png)
 
 ---
 ## 🛠️ Tecnologías Utilizadas
