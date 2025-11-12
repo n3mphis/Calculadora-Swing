@@ -43,8 +43,8 @@ Desde tu IDE
 1. Clona el repositorio:
 
 ``` bash
-git clone https://github.com/Juampi-EDS/calculadora-java-swing.git
+git clone https://github.com/n3mphis/Calculadora-Swing.git
 ```
 
 2. Abre el proyecto en IntelliJ IDEA o Eclipse
-3. Ejecuta la clase principal: Main.java
+3. Ejecuta la clase principal: CalculadoraGUI
