@@ -6,10 +6,10 @@ public class CalculadoraLogica {
         return switch (operador) {
             case "+" -> num1 + num2;
             case "-" -> num1 - num2;
-            case "x" -> num1 * num2;
+            case "×" -> num1 * num2;
             case "÷" -> {
                 if (num2 == 0) {
-                    throw new ArithmeticException("División por cero");
+                    throw new ArithmeticException("No se puede dividir por cero");
                 }
                 yield num1 / num2;
             }
