@@ -2,6 +2,7 @@ package com.jp.calculadora;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class CalculadoraGUI extends JFrame{
     private JTextField pantalla;
@@ -9,6 +10,8 @@ public class CalculadoraGUI extends JFrame{
     private JButton[] botonesNumeros;
     private JButton btnSuma, btnResta, btnMulti, btnDiv;
     private JButton btnIgual, btnPunto, btnLimpiar;
+    private StringBuilder numeroActual;
+    private boolean nuevaOperacion;
 
     public CalculadoraGUI() {
         setTitle("Calculadora");
@@ -64,6 +67,28 @@ public class CalculadoraGUI extends JFrame{
         }
         estilizarBoton(btnPunto, Color.WHITE, Color.BLACK);
 
+        ActionListener listenerNumeros = e -> {
+            if (nuevaOperacion) {
+                numeroActual = new StringBuilder();
+                nuevaOperacion = false;
+            }
+            JButton btn = (JButton) e.getSource();
+            String digito = btn.getText();
+            if (digito.equals(".") && numeroActual.toString().contains(".")) return;
+            numeroActual.append(digito);
+            pantalla.setText(numeroActual.toString());
+        };
+        for (JButton btun : botonesNumeros) {
+            btun.addActionListener(listenerNumeros);
+        }
+        btnPunto.addActionListener(listenerNumeros);
+
+        btnLimpiar.addActionListener(e -> {
+            numeroActual = new StringBuilder();
+            nuevaOperacion = true;
+            pantalla.setText("0");
+        });
+
         // Agrega botones al panel en orden
         // Fila 0
         agregarBoton(btnLimpiar, 0, 0, 1, 1);
@@ -91,7 +116,12 @@ public class CalculadoraGUI extends JFrame{
         agregarBoton(botonesNumeros[0], 0, 4, 2, 1);
         agregarBoton(btnPunto, 2, 4, 1, 1);
         agregarBoton(btnIgual, 3, 4, 1, 1);
+
         add(panelBotones, BorderLayout.CENTER);
+
+        numeroActual = new StringBuilder();
+        nuevaOperacion = true;
+        pantalla.setText("0");
     }
 
     private void estilizarBoton(JButton btn, Color fondo, Color texto) {
