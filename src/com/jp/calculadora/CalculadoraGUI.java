@@ -121,6 +121,10 @@ public class CalculadoraGUI extends JFrame{
             numero2 = Double.parseDouble(numeroActual.toString());
 
             try {
+                if (numero2 == 0) {
+                    pantalla.setText("No permitido");
+                    return;
+                }
                 double resultado = logica.calcular(numero1, operador, numero2);
                 String texto = (resultado == (long) resultado)
                         ? String.valueOf((long) resultado)
