@@ -21,6 +21,9 @@ Una **calculadora básica con interfaz gráfica** desarrollada en **Java** utili
 
 ## 📸 Capturas de Pantalla
 ![Captura de la interfaz de la calculadora](/screenshots/calculadora.png)
+![Caputa de la calculadora que muestra un calculo](/screenshots/calculadora2.png)
+![Caputa de la calculadora que muestra una divison por 0](/screenshots/calculadora3.png)
+![Caputa de la calculadora que muestra el error al dividir por 0](/screenshots/calculadora4.png)
 
 ---
 ## 🛠️ Tecnologías Utilizadas
