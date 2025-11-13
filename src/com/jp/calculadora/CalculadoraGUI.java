@@ -16,6 +16,7 @@ public class CalculadoraGUI extends JFrame{
     private double numero1;
     private double numero2;
     private String operador;
+    private boolean mostrandoOperacion;
 
     public CalculadoraGUI() {
         setTitle("Calculadora");
@@ -79,9 +80,17 @@ public class CalculadoraGUI extends JFrame{
             }
             JButton btn = (JButton) e.getSource();
             String digito = btn.getText();
+
+            // Evita multiples puntos
             if (digito.equals(".") && numeroActual.toString().contains(".")) return;
             numeroActual.append(digito);
-            pantalla.setText(numeroActual.toString());
+
+            if (mostrandoOperacion) {
+                pantalla.setText(formatearNumero(numero1) + " " + operador + " " + numeroActual);
+            } else {
+                pantalla.setText(numeroActual.toString());
+            }
+
         };
         for (JButton btun : botonesNumeros) {
             btun.addActionListener(listenerNumeros);
@@ -95,6 +104,10 @@ public class CalculadoraGUI extends JFrame{
             numero1 = Double.parseDouble(pantalla.getText());
             operador = ((JButton) e.getSource()).getText();
             nuevaOperacion = true;
+            mostrandoOperacion = true;
+
+            pantalla.setText(formatearNumero(numero1) + " " + operador);
+            numeroActual = new StringBuilder();
         };
         btnSuma.addActionListener(listenerOperador);
         btnResta.addActionListener(listenerOperador);
@@ -116,6 +129,7 @@ public class CalculadoraGUI extends JFrame{
                 numeroActual = new StringBuilder(texto);
                 operador = null;
                 nuevaOperacion = true;
+                mostrandoOperacion = false;
             } catch (ArithmeticException ex) {
                 pantalla.setText("Error");
                 nuevaOperacion = true;
@@ -125,7 +139,10 @@ public class CalculadoraGUI extends JFrame{
         // Listener para limpiar
         btnLimpiar.addActionListener(e -> {
             numeroActual = new StringBuilder();
+            numero1 = 0;
+            operador = null;
             nuevaOperacion = true;
+            mostrandoOperacion = false;
             pantalla.setText("0");
         });
 
@@ -162,6 +179,7 @@ public class CalculadoraGUI extends JFrame{
         numeroActual = new StringBuilder();
         logica = new CalculadoraLogica();
         nuevaOperacion = true;
+        mostrandoOperacion = false;
         pantalla.setText("0");
     }
 
@@ -183,6 +201,14 @@ public class CalculadoraGUI extends JFrame{
         gbc.weighty = 1.0;
         gbc.insets = new Insets(5, 5, 5, 5);
         panelBotones.add(btn, gbc);
+    }
+
+    private String formatearNumero(double numero) {
+        if (numero == (long) numero) {
+            return String.valueOf((long) numero);
+        } else {
+            return String.valueOf(numero);
+        }
     }
 
     public static void main(String[] args) {
